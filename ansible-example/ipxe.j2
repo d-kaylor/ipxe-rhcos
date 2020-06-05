@@ -1,0 +1,5 @@
+#!ipxe
+# https://access.redhat.com/solutions/4762021
+
+kernel {{ rhcos_url }}/rhcos-{{ ocp_version }}-x86_64-installer-kernel-x86_64 ip={{ hostvars[item]['ansible_host'] }}::{{ network["gateway"] }}:{{ network["subnet"] }}:{{ hostvars[item]['inventory_hostname_short'] }}.{{ network["domain"] }}:{{ network["interface"] }}:none bond={{ network["bond_config"] }} nameserver={{ network["dns"] }} rd.neednet=1 initrd console=tty0 console=ttyS0 coreos.inst=yes coreos.inst.install_dev=vda coreos.inst.image_url={{ rhcos_url }}/rhcos-{{ ocp_version }}-x86_64-metal.x86_64.raw.gz coreos.inst.ignition_url={{ ignition_url }}/{{ ignition_file }}
+initrd {{ rhcos_url }}/rhcos-{{ ocp_version }}-x86_64-installer-initramfs.x86_64.img

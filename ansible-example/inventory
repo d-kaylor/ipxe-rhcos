@@ -1,0 +1,16 @@
+[bootstrap]
+bootstrap ansible_host=192.168.0.40 mac_address=52:54:00:71:df:40
+
+[masters]
+master1 ansible_host=192.168.0.41 mac_address=52:54:00:71:df:41
+master2 ansible_host=192.168.0.42 mac_address=52:54:00:71:df:42
+master3 ansible_host=192.168.0.43 mac_address=52:54:00:71:df:43
+
+[workers]
+worker1 ansible_host=192.168.0.44 mac_address=52:54:00:71:df:44
+worker2 ansible_host=192.168.0.45 mac_address=52:54:00:71:df:45
+
+[ocp4:children]
+bootstrap
+masters
+workers

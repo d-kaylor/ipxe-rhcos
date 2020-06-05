@@ -1,0 +1,43 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+
+  vars:
+    ocp_version: 4.4.3
+    rhcos_url: "http://192.168.0.1:8080/coreos/{{ ocp_version }}"
+    ignition_url: http://192.168.0.1:8080/coreos/install
+    #    ipxe_path: /var/www/html/pxe
+    ipxe_path: /tmp
+    network:
+      interface: bond0
+      gateway: 192.168.0.1
+      subnet: 255.255.255.0
+      dns: 192.168.0.1
+      domain: ocp4.lab.local
+      bond_config: "bond0:enp1s0,enp7s0:mode=802.3ad,lacp_rate=fast,miimon=100,xmit_hash_policy=layer2+3"
+
+  tasks:
+    - name: Write bootstrap ipxe files
+      template:
+        src: ipxe.j2
+        dest: '{{ ipxe_path }}/{{ hostvars[item]["mac_address"] | replace(":","-") }}'
+      vars:
+        ignition_file: bootstrap.ign
+      loop: '{{ groups["bootstrap"] }}'
+
+    - name: Write master ipxe files
+      template:
+        src: ipxe.j2
+        dest: '{{ ipxe_path }}/{{ hostvars[item]["mac_address"] | replace(":","-") }}'
+      vars:
+        ignition_file: master.ign
+      loop: '{{ groups["masters"] }}'
+
+    - name: Write worker ipxe files
+      template:
+        src: ipxe.j2
+        dest: '{{ ipxe_path }}/{{ hostvars[item]["mac_address"] | replace(":","-") }}'
+      vars:
+        ignition_file: worker.ign
+      loop: '{{ groups["workers"] }}'

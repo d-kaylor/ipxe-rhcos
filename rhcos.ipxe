@@ -1,0 +1,79 @@
+#!ipxe
+
+menu iPXE boot menu
+item local       Boot local disk
+item coreos-dhcp Install Red Hat CoreOS - dhcp
+item coreos-100  Install Red Hat CoreOS - 192.168.0.100
+item coreos-101  Install Red Hat CoreOS - 192.168.0.101
+item coreos-102  Install Red Hat CoreOS - 192.168.0.102
+item coreos-103  Install Red Hat CoreOS - 192.168.0.103
+item coreos-104  Install Red Hat CoreOS - 192.168.0.104
+item coreos-105  Install Red Hat CoreOS - 192.168.0.105
+item debug       Debug iPXE
+item
+choose --timeout 10000 --default local target && goto ${target}
+
+:local
+exit
+
+:coreos-dhcp
+dhcp
+chain http://192.168.0.1:8080/pxe/${net0/mac:hexhyp}
+boot
+
+:coreos-100
+ifopen net0
+set net0/ip 192.168.0.100
+set net0/netmask 255.255.255.0
+set net0/gateway 192.168.0.1
+set dns 192.168.0.1
+chain http://192.168.0.1:8080/pxe/${net0/mac:hexhyp}
+boot
+
+:coreos-101
+ifopen net0
+set net0/ip 192.168.0.101
+set net0/netmask 255.255.255.0
+set net0/gateway 192.168.0.1
+set dns 192.168.0.1
+chain http://192.168.0.1:8080/pxe/${net0/mac:hexhyp}
+boot
+
+:coreos-102
+ifopen net0
+set net0/ip 192.168.0.102
+set net0/netmask 255.255.255.0
+set net0/gateway 192.168.0.1
+set dns 192.168.0.1
+chain http://192.168.0.1:8080/pxe/${net0/mac:hexhyp}
+boot
+
+:coreos-103
+ifopen net0
+set net0/ip 192.168.0.103
+set net0/netmask 255.255.255.0
+set net0/gateway 192.168.0.1
+set dns 192.168.0.1
+chain http://192.168.0.1:8080/pxe/${net0/mac:hexhyp}
+boot
+
+:coreos-104
+ifopen net0
+set net0/ip 192.168.0.104
+set net0/netmask 255.255.255.0
+set net0/gateway 192.168.0.1
+set dns 192.168.0.1
+chain http://192.168.0.1:8080/pxe/${net0/mac:hexhyp}
+boot
+
+:coreos-105
+ifopen net0
+set net0/ip 192.168.0.105
+set net0/netmask 255.255.255.0
+set net0/gateway 192.168.0.1
+set dns 192.168.0.1
+chain http://192.168.0.1:8080/pxe/${net0/mac:hexhyp}
+boot
+
+:debug
+shell
