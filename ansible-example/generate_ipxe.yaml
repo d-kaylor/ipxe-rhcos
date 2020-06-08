@@ -7,8 +7,7 @@
     ocp_version: 4.4.3
     rhcos_url: "http://192.168.0.1:8080/coreos/{{ ocp_version }}"
     ignition_url: http://192.168.0.1:8080/coreos/install
-    #    ipxe_path: /var/www/html/pxe
-    ipxe_path: /tmp
+    ipxe_path: /var/www/html/pxe
     network:
       interface: bond0
       gateway: 192.168.0.1
