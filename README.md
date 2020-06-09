@@ -9,7 +9,9 @@ Building the iso
 
    `git clone git://git.ipxe.org/ipxe.git`
 
-2. Note the build dependencies at [https://ipxe.org/download](https://ipxe.org/download)
+2. Note the build dependencies at [https://ipxe.org/download](https://ipxe.org/download). For RHEL 8 or Fedora, try:
+
+   `dnf install gcc binutils make xz xz-devel mtools genisoimage syslinux`
 
 3. Create a custom menu in the src directory. See the rhcos.ipxe example in this repository. This configures a menu that includes five static ips that can be used for installation. It chain loads the node-specific iPXE files from an http server based on the node's mac address.
 
