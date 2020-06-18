@@ -1,7 +1,7 @@
 Installing OpenShift 4 with an iPXE boot iso
 ============================================
 
-[Using PXE](https://docs.openshift.com/container-platform/4.4/installing/installing_bare_metal/installing-bare-metal.html#installation-user-infra-machines-pxe_installing-bare-metal) is a good way to automate UPI installations of OpenShift. In an environments without DHCP or where DHCP cannot be configured for PXE, a custom iPXE boot iso can be used instead.
+[Using PXE](https://docs.openshift.com/container-platform/4.4/installing/installing_bare_metal/installing-bare-metal.html#installation-user-infra-machines-pxe_installing-bare-metal) is a good way to automate bare metal UPI installations of OpenShift. In environments without DHCP or where DHCP cannot be configured for PXE, a custom iPXE boot iso can be used instead.
 
 Building the iso
 ----------------
